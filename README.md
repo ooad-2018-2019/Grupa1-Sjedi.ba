@@ -5,8 +5,8 @@ Tema: Sjedi.ba
 Clanovi tima TimLanaJurcevicFanPage:
 
 1. Bakir Sabljica
-2. Džan Tabaković
-3. Mirza Sinanović
+8. Džan Tabaković
+7. Mirza Sinanović
 
 Opis teme
 
@@ -19,19 +19,19 @@ stalni korisnici će dobivati obavijesti o svakom novom događaju kao i neke dod
 
 Funkcionalnosti
 
-  Mogućnost kreiranja i ažuriranja korisničkog računa
+  - Mogućnost kreiranja i ažuriranja korisničkog računa
   
-  Mogućnost rezervacije sjedišta
+  - Mogućnost rezervacije sjedišta
   
-  Mogućnost dobijanja informacija o događajima
+  - Mogućnost dobijanja informacija o događajima
   
-  Mogućnost pregleda nadolazećih događaja
+  - Mogućnost pregleda nadolazećih događaja
   
-  Mogućnost dodavanja novih lokacija
+  - Mogućnost dodavanja novih lokacija
   
-  Mogućnost dodavanja novih događaja
+  - Mogućnost dodavanja novih događaja
   
-  Mogućnost organizovanja događaja
+  - Mogućnost organizovanja događaja
 
 
 
@@ -39,7 +39,8 @@ Procesi
 
   Kreiranje računa 
     
-    Korisnik unosi lične podatke te ih šalje sistemu za validaciju koji u zavisnosti od podataka odobri ili ne odobri kreiranje
+    Korisnik unosi lične podatke te ih šalje sistemu za validaciju koji u zavisnosti
+    od podataka odobri ili ne odobri kreiranje
   
   
   Rezervacija događaja
@@ -60,17 +61,18 @@ Procesi
   
   Organizacija događaja
     
-    Organizator unosi podatke o mjestu, vremenu i datumu događaja, koje se dalje šalju lokalnom administratoru na provjeru
+    Organizator unosi podatke o mjestu, vremenu i datumu događaja, koje se dalje šalju 
+    lokalnom administratoru na provjeru
     
 
 Akteri
 
-  Registrovani korisnik
+  - Registrovani korisnik
   
-  Neregistrovani korisnik
+  - Neregistrovani korisnik
   
-  Organizator
+  - Organizator
   
-  Lokalni administrator
+  - Lokalni administrator
   
-  Glavni administrator
+  - Glavni administrator
