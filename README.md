@@ -8,7 +8,8 @@ Clanovi tima TimLanaJurcevicFanPage:
 8. Džan Tabaković
 7. Mirza Sinanović
 
-Opis teme
+
+# Opis teme
 
 Aplikacija za rezervaciju mjesta za bilo koji javni događaj koji se odvija na stadionu ili u dvorani, kao i organizaciju istih.
 Rezervaciju mogu vršiti kako registrovani, tako i neregistrovani korisnici koji dostave lične podatke. Pored rezervacije, 
@@ -17,7 +18,7 @@ stalni korisnici će dobivati obavijesti o svakom novom događaju kao i neke dod
 
 
 
-Funkcionalnosti
+# Funkcionalnosti
 
   - Mogućnost kreiranja i ažuriranja korisničkog računa
   
@@ -35,7 +36,7 @@ Funkcionalnosti
 
 
 
-Procesi
+# Procesi
 
   Kreiranje računa 
     
@@ -65,7 +66,7 @@ Procesi
     lokalnom administratoru na provjeru
     
 
-Akteri
+# Akteri
 
   - Registrovani korisnik
   
