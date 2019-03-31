@@ -9,6 +9,7 @@ Clanovi tima TimLanaJurcevicFanPage:
 3. Mirza Sinanović
 
 Opis teme
+
 Aplikacija za rezervaciju mjesta za bilo koji javni događaj koji se odvija na stadionu ili u dvorani, kao i organizaciju istih.
 Rezervaciju mogu vršiti kako registrovani, tako i neregistrovani korisnici koji dostave lične podatke. Pored rezervacije, 
 stalni korisnici će dobivati obavijesti o svakom novom događaju kao i neke dodatne privilegije.
@@ -17,6 +18,7 @@ stalni korisnici će dobivati obavijesti o svakom novom događaju kao i neke dod
 
 
 Funkcionalnosti
+
   Mogućnost kreiranja i ažuriranja korisničkog računa
   Mogućnost rezervacije sjedišta
   Mogućnost dobijanja informacija o događajima
@@ -28,6 +30,7 @@ Funkcionalnosti
 
 
 Procesi
+
   Kreiranje računa 
     Korisnik unosi lične podatke te ih šalje sistemu za validaciju koji u zavisnosti od podataka odobri ili ne odobri kreiranje
   Rezervacija događaja
@@ -41,6 +44,7 @@ Procesi
     Organizator unosi podatke o mjestu, vremenu i datumu događaja, koje se dalje šalju lokalnom administratoru na provjeru
     
 Akteri
+
   Registrovani korisnik
   Neregistrovani korisnik
   Organizator
