@@ -11,16 +11,17 @@ Clanovi tima TimLanaJurcevicFanPage:
 
 # Opis teme
 
-Aplikacija za rezervaciju mjesta za bilo koji javni događaj koji se odvija na stadionu ili u dvorani, kao i organizaciju istih.
-Rezervaciju mogu vršiti kako registrovani, tako i neregistrovani korisnici koji dostave lične podatke. Pored rezervacije, 
-stalni korisnici će dobivati obavijesti o svakom novom događaju kao i neke dodatne privilegije.
-
+Aplikacija za rezervaciju mjesta za bilo koji javni događaj koji se odvija na stadionu ili u dvorani, kao i za organizaciju istih.
+Rezervaciju mogu vršiti kako registrovani, tako i neregistrovani korisnici koji dostave lične podatke. Registrovani i neregistrovani korisnici mogu pronaći informacije o nadolazećim događajima. Pored rezervacije i pregleda događaja, stalni korisnici će dobivati obavijesti o svakom novom događaju kao i neke dodatne privilegije. 
+Organizatori mogu organizovati događaje uz odobrenje lokalnog administratora koji kreira sam događaj.
 
 
 
 # Funkcionalnosti
 
   - Mogućnost kreiranja i ažuriranja korisničkog računa
+  
+  - Mogućnost kreiranja i ažuriranja organizatorskog računa
   
   - Mogućnost rezervacije sjedišta
   
@@ -38,15 +39,20 @@ stalni korisnici će dobivati obavijesti o svakom novom događaju kao i neke dod
 
 # Procesi
 
-  Kreiranje računa 
+  Kreiranje korisničkog računa 
     
     Korisnik unosi lične podatke te ih šalje sistemu za validaciju koji u zavisnosti
     od podataka odobri ili ne odobri kreiranje
   
+  Kreiranje organizatorskog računa 
+    
+    Organizator unosi lične podatke te ih šalje sistemu za validaciju koji u zavisnosti
+    od podataka odobri ili ne odobri kreiranje, dalje se podaci šalju lokalnom administratoru 
+    koji također može odobriti, odnosno ne odobriti kreiranje
   
   Rezervacija događaja
     
-    Korisnik bira određeni događaj, dobija informaciju o dostupnim mjestima te vrši rezervaciju
+    Korisnik bira određeni događaj, dobija informaciju o dostupnim mjestima, te vrši rezervaciju
   
   
   Dodavanje lokacija
@@ -56,14 +62,15 @@ stalni korisnici će dobivati obavijesti o svakom novom događaju kao i neke dod
   
   Dodavanje događaja
     
-    Lokalni administratori dodaje novi događaj na osnovu zahtjeva organizatora, unosi datum i vrijeme i dvoranu 
-    u kojoj se događaj organizuje
+    Lokalni administratori dodaje novi događaj na osnovu zahtjeva organizatora, unosi datum, 
+    vrijeme i dvoranu, odnosno stadion gdje se događaj organizuje
   
   
   Organizacija događaja
     
     Organizator unosi podatke o mjestu, vremenu i datumu događaja, koje se dalje šalju 
-    lokalnom administratoru na provjeru
+    lokalnom administratoru na provjeru i odobravanje, te lokalni administrator kreira
+    novi događaj
     
 
 # Akteri
