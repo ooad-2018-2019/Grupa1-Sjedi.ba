@@ -4,25 +4,18 @@ namespace SjediBa.Models
 {
     public class EventModel
     {
-        public int Id { get; set; }
-
-        public string Naziv { get; set; }
-
-        public string Lokacija { get; set; }
-
-        public DateTime Datum { get; set; }
-
-        public string Vrsta { get; set; }
-
-        public string Organizacija { get; set; }
-
-        public EventModel(int id, string naziv, string lokacija, DateTime datum, string vrsta, string organizacija) {
-            this.Id = id;
-            this.Naziv = naziv;
-            this.Lokacija = lokacija;
-            this.Datum = datum;
-            this.Vrsta = vrsta;
-            this.Organizacija = organizacija;
+        public EventModel(OrganizerModel organizer, SpaceModel space, DateTime startDate, DateTime endTime,int id)
+        {
+            Id = id;
+            Organizer = organizer;
+            Space = space;
+            StartDate = startDate;
+            EndTime = endTime;
         }
+        public int Id { get; set; }
+        public OrganizerModel Organizer { get; set; }
+        public SpaceModel Space { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndTime { get; set; }
     }
 }
