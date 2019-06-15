@@ -1,9 +1,9 @@
 @{
-    ViewData["Title"] = "Events";
+    ViewData["Title"] = "Događaji";
 }
 <h1>@ViewData["Title"]</h1>
 
-@{
+@{  
     List<EventModel> events = new List<EventModel>();
     events.Add(new EventModel(1, "Event 1", "Lokacija 1", DateTime.Now, "Vrsta 1", "Organizacija 1"));
     events.Add(new EventModel(2, "Event 2", "Lokacija 2", DateTime.Now, "Vrsta 2", "Organizacija 2"));
@@ -36,18 +36,19 @@
                 <td>@e.Datum.ToShortTimeString()</td>
                 <td>@e.Vrsta</td>
                 <td>@e.Organizacija</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookingPopup" onclick="SetCurrentEvent(@e.Id, '@e.Naziv')">
+                        Rezerviši
+                    </button>
+                </td>
             </tr>
         }
     </table>
 </div>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-</button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="bookingPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -58,7 +59,7 @@
             </div>
             <div class="modal-body">
                 <div class="mb-3">
-                    <span>Kratki opis dogadjaja</span><br>
+                    <span id="eventName"></span><br>
                     <span>Vrsta</span><br>
                     <span>Izvodjač</span><br>
                     <span>Lokacija</span><br>
