@@ -1,0 +1,114 @@
+@{
+    ViewData["Title"] = "Events";
+}
+<h1>@ViewData["Title"]</h1>
+
+@{
+    List<EventModel> events = new List<EventModel>();
+    events.Add(new EventModel(1, "Event 1", "Lokacija 1", DateTime.Now, "Vrsta 1", "Organizacija 1"));
+    events.Add(new EventModel(2, "Event 2", "Lokacija 2", DateTime.Now, "Vrsta 2", "Organizacija 2"));
+}
+
+<div class="clearfix">
+    <div class="form-group float-right">
+        <div>
+            <i class="fa fa-search position-absolute pt-2 pl-3"></i>
+            <input type="text" class="form-control pl-5" id="search" placeholder="Search">
+        </div>
+    </div>
+    <table class="float-left w-100">
+        <tr>
+            <th>ID</th>
+            <th>Naziv</th>
+            <th>Lokacija</th>
+            <th>Datum</th>
+            <th>Vrijeme</th>
+            <th>Vrsta</th>
+            <th>Organizacija</th>
+        </tr>
+        @foreach (var e in events)
+        {
+            <tr>
+                <td>@e.Id</td>
+                <td>@e.Naziv</td>
+                <td>@e.Lokacija</td>
+                <td>@e.Datum.Date.ToString("dd.MM.yyyy")</td>
+                <td>@e.Datum.ToShortTimeString()</td>
+                <td>@e.Vrsta</td>
+                <td>@e.Organizacija</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Naziv dogadjaja</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <span>Kratki opis dogadjaja</span><br>
+                    <span>Vrsta</span><br>
+                    <span>Izvodjač</span><br>
+                    <span>Lokacija</span><br>
+                    <span>Datum i vrijeme</span><br>
+                </div>
+                <form id="booking" class="form-horizontal" method="post" action="#">
+                    @if(true)
+                    {
+                        <div class="form-group row">
+                            <label for="name" class="col-form-label col-sm-2">Ime i prezime:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Ime i prezime">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="date" class="col-form-label col-sm-2">Datum rodjenja:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="date" id="date" placeholder="Datum rodjenja">
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <select class="form-control" name="sector" id="sector">
+                                <option value="">Sektor/Dio/Tribina</option>
+                                <option value="1">Prva</option>
+                                <option value="2">Druga</option>
+                                <option value="3">Treća</option>
+                                <option value="4">Četvrta</option>
+                                <option value="5">Peta</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <select class="form-control" name="seat" id="seat">
+                                <option value="">Sjedište</option>
+                                <option value="1">A1</option>
+                                <option value="2">A4</option>
+                                <option value="3">B9</option>
+                                <option value="4">E1</option>
+                                <option value="5">F2</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <span>Cijena: 5$</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="$('#booking').submit()">Rezerviši</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+            </div>
+        </div>
+    </div>
+</div>

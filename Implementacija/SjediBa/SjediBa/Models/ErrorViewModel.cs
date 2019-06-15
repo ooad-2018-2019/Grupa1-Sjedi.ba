@@ -1,5 +1,3 @@
-using System;
-
 namespace SjediBa.Models
 {
     public class ErrorViewModel

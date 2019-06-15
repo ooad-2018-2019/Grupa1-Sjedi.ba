@@ -28,3 +28,5 @@
 /home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/SjediBa.dll
 /home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/SjediBa.pdb
 /home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/SjediBa.csproj.CopyComplete
+/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/Razor/Views/Events/Events.g.cshtml.cs
+/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/Razor/Views/Login/Login.g.cshtml.cs
