@@ -2,7 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using SjediBa.Models;
 
-namespace dotnettest.Controllers
+namespace SjediBa.Controllers
 {
     public class LoginController : Controller
     {
