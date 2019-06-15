@@ -28,7 +28,7 @@
       "dependencies": {
         "EntityFramework": {
           "target": "Package",
-          "version": "[4.3.1, )"
+          "version": "[6.2.0, )"
         },
         "Microsoft.AspNetCore.App": {
           "suppressParent": "All",
