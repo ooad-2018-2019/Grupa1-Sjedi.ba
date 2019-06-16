@@ -5,9 +5,7 @@
 
 @{  
     List<EventModel> events = new List<EventModel>();
-    events.Add(new EventModel(new OrganizerModel("ime",  "prezime", "adresa", DateTime.Now, new ProxyModel(new AccountModel("admin", "admin", 1), 1), 1), new SpaceModel("adresa", new List<SectionModel>{new SectionModel(new List<SeatModel>{new SeatModel("10", 1)}, 100, "naziv", 1)}, new LocalAdministratorModel("name1", "surname1", DateTime.Now, "adresa1", new ProxyModel(new AccountModel("admin", "admin", 1), 1), 1),  1), DateTime.Now, DateTime.Now, "Dogadjaj 1", 1));
-    events.Add(new EventModel(new OrganizerModel("ime",  "prezime", "adresa", DateTime.Now, new ProxyModel(new AccountModel("admin", "admin", 1), 1), 1), new SpaceModel("adresa", new List<SectionModel>{new SectionModel(new List<SeatModel>{new SeatModel("10", 1)}, 100, "naziv", 1)}, new LocalAdministratorModel("name1", "surname1", DateTime.Now, "adresa1", new ProxyModel(new AccountModel("admin", "admin", 1), 1), 1),  1), DateTime.Today, DateTime.Now, "Dogadjaj 2", 1));
-
+    
 }
 
 <div class="clearfix">
@@ -29,12 +27,12 @@
         @foreach (var e in events)
         {
             <tr>
-                <td>@e.Id</td>
+                <td>@e.EventModelId</td>
                 <td>@e.Name</td>
-                <td>@e.Space.Address</td>
+                <td>@e.SpaceModel.Address</td>
                 <td>@e.StartDate.ToString("dd. MM. yy.")</td>
                 <td>@e.StartDate.ToShortTimeString()</td>
-                <td>@e.Organizer.Name</td>
+                <td>@e.SpaceModel.Name</td>
                 <td>
                     @{ var json = Newtonsoft.Json.JsonConvert.SerializeObject(e); }
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookingPopup" onclick="SetCurrentEvent(@json)">

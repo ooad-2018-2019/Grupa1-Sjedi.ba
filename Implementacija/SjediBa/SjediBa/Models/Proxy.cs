@@ -7,15 +7,16 @@ namespace SjediBa.Models
 {
     public class ProxyModel
     {
-        public ProxyModel(AccountModel account, int id)
-        {
-            Id = id;
-            this.Account = account;
-        }
-        public int Id { get; set; }
-        public AccountModel Account { get; set; }
+        // public ProxyModel(AccountModel account, int id)
+        // {
+        //     Id = id;
+        //     this.Account = account;
+        // }
+        public int ProxyModelId { get; set; }
+        public int AccountModelId { get; set; }
+        public AccountModel AccountModel { get; set; }
 
-        public void Check() { }
+        // public void Check() { }
 
     }
 }

@@ -8,15 +8,15 @@ namespace SjediBa.Models
     public class RegisteredUserModel : UserModel
     {
 
-        public List<ReservationModel> Reservations { get; set; }
-        public List<NotificationModel> Notifications { get; set; }
+        public ICollection<ReservationModel> ReservationModels { get; set; } = new List<ReservationModel>();
+        public ICollection<NotificationModel> NotificationModels { get; set; } = new List<NotificationModel>();
 
-        public RegisteredUserModel(string name, string surname, string address, DateTime dateOfBirth, List<ReservationModel> reservations, List<NotificationModel> notifications, int id) : base(name, surname, address, dateOfBirth,id)
-        {
+        // public RegisteredUserModel(string name, string surname, string address, DateTime dateOfBirth, List<ReservationModel> reservations, List<NotificationModel> notifications, int id) : base(name, surname, address, dateOfBirth,id)
+        // {
 
-            this.Reservations = reservations;
-            this.Notifications = notifications;
+        //     this.Reservations = reservations;
+        //     this.Notifications = notifications;
             
-        }
+        // }
     }
 }

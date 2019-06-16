@@ -7,17 +7,13 @@ namespace SjediBa.Models
 {
     public class SpaceModel
     {
-        public SpaceModel(string address, List<SectionModel> sections, LocalAdministratorModel localAdministrator,int id)
-        {
-            Id = id;
-            Address = address;
-            Sections = sections;
-            LocalAdministrator = localAdministrator;
-        }
-        public int Id { get; set; }
+        
+        public int SpaceModelId { get; set; }
+        public string Name { get; set; }
         public string Address { get; set; }
-        public List<SectionModel> Sections { get; set; }
-        public LocalAdministratorModel LocalAdministrator { get; set; }
+        public ICollection<SectionModel> SectionModels { get; set; } = new List<SectionModel>();
+        public int LocalAdministratorModelId { get; set; }
+        public LocalAdministratorModel LocalAdministratorModel { get; set; }
 
     }
 }
