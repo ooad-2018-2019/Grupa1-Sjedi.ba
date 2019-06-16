@@ -2,10 +2,52 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+var currentEvent;
 
-function SetCurrentEvent(id, naziv){
-    console.log(id + " " + naziv);
+function SetCurrentEvent(jsonObj){
+    currentEvent = jsonObj;
+    console.log(currentEvent);
+    document.getElementById('eventName').innerHTML = "Naziv događaja: " + jsonObj.Name;
+    SetSections();
+    SetSeats();
+    SetPrice();
+}
 
-    document.getElementById('eventName').innerHTML = naziv;
+function SetSections() {
+    var sections_element = document.getElementById('section');
+    for(var i = 0; i < currentEvent.Space.Sections.length; i++){
+        var option = document.createElement("option");
+        option.setAttribute("value", "\"" + i + "\"");
+        option.text = currentEvent.Space.Sections[i].Name;
+        sections_element.add(option);
+    }
+}
 
+function SetSeats() {
+    var sections_element = document.getElementById('section');
+    var seat_element = document.getElementById('seat');
+    console.log(sections_element.options[sections_element.selectedIndex].value);
+    if(sections_element.options[sections_element.selectedIndex].value !== ""){
+        for(var i = 0; i < currentEvent.Space.Sections[sections_element.selectedIndex - 1].Seats.length; i++){
+            var option = document.createElement("option");
+            option.setAttribute("value", "\"" + i + "\"");
+            option.text = currentEvent.Space.Sections[sections_element.selectedIndex - 1].Seats[i].RowSeat;
+            seat_element.add(option);
+        }
+    }
+    else{
+        for(var i = seat_element.length - 1; i > 0; i--){
+            seat_element.remove(i);
+        }
+    }
+}
+
+function SetPrice() {
+    var sections_element = document.getElementById('section');
+    if(sections_element.options[sections_element.selectedIndex].value !== "") {
+        document.getElementById("seatPrice").innerHTML = "Cijena: " + currentEvent.Space.Sections[sections_element.selectedIndex - 1].SeatPrices + "KM";
+    }
+    else{
+        document.getElementById("seatPrice").innerHTML = "Morate odabrati sektor da biste vidjelli cijenu!";
+    }
 }

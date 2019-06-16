@@ -7,15 +7,18 @@ namespace SjediBa.Models
 {
     public class SectionModel
     {
-        public SectionModel(List<SeatModel> seats, int seatPrices,int id)
+        public SectionModel(List<SeatModel> seats, int seatPrices, string name, int id)
         {
             Id = id;
+            Name = name;
             Seats = seats;
             SeatPrices = seatPrices;
         }
         public int Id { get; set; }
         public List<SeatModel> Seats { get; set; }
         public int SeatPrices { get; set; }
+        
+        public string Name { get; set; }
 
     }
 }

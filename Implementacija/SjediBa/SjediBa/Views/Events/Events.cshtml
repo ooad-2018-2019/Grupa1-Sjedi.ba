@@ -5,8 +5,9 @@
 
 @{  
     List<EventModel> events = new List<EventModel>();
-    events.Add(new EventModel(1, "Event 1", "Lokacija 1", DateTime.Now, "Vrsta 1", "Organizacija 1"));
-    events.Add(new EventModel(2, "Event 2", "Lokacija 2", DateTime.Now, "Vrsta 2", "Organizacija 2"));
+    events.Add(new EventModel(new OrganizerModel("ime",  "prezime", "adresa", DateTime.Now, new ProxyModel(new AccountModel("admin", "admin", 1), 1), 1), new SpaceModel("adresa", new List<SectionModel>{new SectionModel(new List<SeatModel>{new SeatModel("10", 1)}, 100, "naziv", 1)}, new LocalAdministratorModel("name1", "surname1", DateTime.Now, "adresa1", new ProxyModel(new AccountModel("admin", "admin", 1), 1), 1),  1), DateTime.Now, DateTime.Now, "Dogadjaj 1", 1));
+    events.Add(new EventModel(new OrganizerModel("ime",  "prezime", "adresa", DateTime.Now, new ProxyModel(new AccountModel("admin", "admin", 1), 1), 1), new SpaceModel("adresa", new List<SectionModel>{new SectionModel(new List<SeatModel>{new SeatModel("10", 1)}, 100, "naziv", 1)}, new LocalAdministratorModel("name1", "surname1", DateTime.Now, "adresa1", new ProxyModel(new AccountModel("admin", "admin", 1), 1), 1),  1), DateTime.Today, DateTime.Now, "Dogadjaj 2", 1));
+
 }
 
 <div class="clearfix">
@@ -23,21 +24,20 @@
             <th>Lokacija</th>
             <th>Datum</th>
             <th>Vrijeme</th>
-            <th>Vrsta</th>
-            <th>Organizacija</th>
+            <th>Organizator</th>
         </tr>
         @foreach (var e in events)
         {
             <tr>
                 <td>@e.Id</td>
-                <td>@e.Naziv</td>
-                <td>@e.Lokacija</td>
-                <td>@e.Datum.Date.ToString("dd.MM.yyyy")</td>
-                <td>@e.Datum.ToShortTimeString()</td>
-                <td>@e.Vrsta</td>
-                <td>@e.Organizacija</td>
+                <td>@e.Name</td>
+                <td>@e.Space.Address</td>
+                <td>@e.StartDate.ToString("dd. MM. yy.")</td>
+                <td>@e.StartDate.ToShortTimeString()</td>
+                <td>@e.Organizer.Name</td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookingPopup" onclick="SetCurrentEvent(@e.Id, '@e.Naziv')">
+                    @{ var json = Newtonsoft.Json.JsonConvert.SerializeObject(e); }
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookingPopup" onclick="SetCurrentEvent(@json)">
                         Rezerviši
                     </button>
                 </td>
@@ -48,22 +48,18 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="bookingPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="bookingPopup" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Naziv dogadjaja</h5>
+                <h5 class="modal-title" id="modalLabel">Rezerviši događaj</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="mb-3">
-                    <span id="eventName"></span><br>
-                    <span>Vrsta</span><br>
-                    <span>Izvodjač</span><br>
-                    <span>Lokacija</span><br>
-                    <span>Datum i vrijeme</span><br>
+                    <span class="h3" id="eventName"></span><br>
                 </div>
                 <form id="booking" class="form-horizontal" method="post" action="#">
                     @if(true)
@@ -83,28 +79,18 @@
                     }
                     <div class="form-group row">
                         <div class="col-sm-6">
-                            <select class="form-control" name="sector" id="sector">
-                                <option value="">Sektor/Dio/Tribina</option>
-                                <option value="1">Prva</option>
-                                <option value="2">Druga</option>
-                                <option value="3">Treća</option>
-                                <option value="4">Četvrta</option>
-                                <option value="5">Peta</option>
+                            <select class="form-control" name="sector" id="section" onclick="SetSeats(); SetPrice()">
+                                <option value="">Sektor</option>
                             </select>
                         </div>
                         <div class="col-sm-6">
                             <select class="form-control" name="seat" id="seat">
                                 <option value="">Sjedište</option>
-                                <option value="1">A1</option>
-                                <option value="2">A4</option>
-                                <option value="3">B9</option>
-                                <option value="4">E1</option>
-                                <option value="5">F2</option>
                             </select>
                         </div>
                     </div>
                 </form>
-                <span>Cijena: 5$</span>
+                <span id="seatPrice"> </span>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="$('#booking').submit()">Rezerviši</button>
