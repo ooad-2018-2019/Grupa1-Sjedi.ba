@@ -6,7 +6,7 @@ namespace SjediBa.Controllers
 {
     public class ReservationController : Controller
     {
-        public IActionResult Events()
+        public IActionResult Reservation()
         {
             return View();
         }

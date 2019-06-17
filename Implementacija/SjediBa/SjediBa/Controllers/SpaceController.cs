@@ -18,32 +18,6 @@ namespace SjediBa.Controllers
             _context = context;
         }
 
-        // GET: Space
-        public async Task<IActionResult> Index()
-        {
-            var databaseContext = _context.Lokacije.Include(s => s.LocalAdministratorModel);
-            return View(await databaseContext.ToListAsync());
-        }
-
-        // GET: Space/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var spaceModel = await _context.Lokacije
-                .Include(s => s.LocalAdministratorModel)
-                .FirstOrDefaultAsync(m => m.SpaceModelId == id);
-            if (spaceModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(spaceModel);
-        }
-
         // GET: Space/Create
         public IActionResult Create()
         {
@@ -62,7 +36,7 @@ namespace SjediBa.Controllers
             {
                 _context.Add(spaceModel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             ViewData["LocalAdministratorModelId"] = new SelectList(_context.Lokalni, "AdministratorModelId", "Discriminator", spaceModel.LocalAdministratorModelId);
             return View(spaceModel);
@@ -115,40 +89,10 @@ namespace SjediBa.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             ViewData["LocalAdministratorModelId"] = new SelectList(_context.Lokalni, "AdministratorModelId", "Discriminator", spaceModel.LocalAdministratorModelId);
             return View(spaceModel);
-        }
-
-        // GET: Space/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var spaceModel = await _context.Lokacije
-                .Include(s => s.LocalAdministratorModel)
-                .FirstOrDefaultAsync(m => m.SpaceModelId == id);
-            if (spaceModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(spaceModel);
-        }
-
-        // POST: Space/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var spaceModel = await _context.Lokacije.FindAsync(id);
-            _context.Lokacije.Remove(spaceModel);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
         private bool SpaceModelExists(int id)

@@ -18,30 +18,9 @@ namespace SjediBa.Controllers
             _context = context;
         }
 
-        // GET: LocalAdministrator
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Lokalni.ToListAsync());
-        }
+        
 
-        // GET: LocalAdministrator/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var localAdministratorModel = await _context.Lokalni
-                .FirstOrDefaultAsync(m => m.AdministratorModelId == id);
-            if (localAdministratorModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(localAdministratorModel);
-        }
-
+       
         // GET: LocalAdministrator/Create
         public IActionResult Create()
         {
@@ -59,7 +38,7 @@ namespace SjediBa.Controllers
             {
                 _context.Add(localAdministratorModel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             return View(localAdministratorModel);
         }
@@ -110,28 +89,13 @@ namespace SjediBa.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             return View(localAdministratorModel);
         }
 
         // GET: LocalAdministrator/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var localAdministratorModel = await _context.Lokalni
-                .FirstOrDefaultAsync(m => m.AdministratorModelId == id);
-            if (localAdministratorModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(localAdministratorModel);
-        }
+       
 
         // POST: LocalAdministrator/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -141,7 +105,7 @@ namespace SjediBa.Controllers
             var localAdministratorModel = await _context.Lokalni.FindAsync(id);
             _context.Lokalni.Remove(localAdministratorModel);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Home");
         }
 
         private bool LocalAdministratorModelExists(int id)
