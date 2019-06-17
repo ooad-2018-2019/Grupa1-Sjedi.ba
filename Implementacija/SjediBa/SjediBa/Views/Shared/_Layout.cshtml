@@ -28,30 +28,52 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav float-right">
+                        @if(true) 
+                        {
+                            <!-- <div class="float-right"> -->
+                            <li class="nav-item" >
+                                <button class="btn btn-info mx-1    " asp-area="" asp-controller="Events" asp-action="Events">Obavijesti</button>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="RegisteredUser" asp-action="Edit">
+                                    <button class="btn btn-info mx-1">Uredi račun</button>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <button class="btn btn-info mx-1">Kreiraj događaj</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="btn btn-info mx-1" asp-area="" asp-controller="Home" asp-action="Index">Dodaj lokaciju</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="btn btn-info mx-1" asp-area="" asp-controller="Home" asp-action="Index">Odjavi se</button>
+                            </li>
+                            
+                            <!-- </div> -->
+                        }
+                    </ul> 
+                    <ul class="navbar-nav flex-grow-1 float-left">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Početna</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Events" asp-action="Events">Događaji</a>
                         </li>
-
-                        @if(true) 
+                        @if(true)
                         {
-                            <!-- <div class="float-right"> -->
-                                <li class="nav-item">
-                                    <button class="btn btn-info" asp-area="" asp-controller="Events" asp-action="Events">Obavijesti</button>
-                                </li>
-                                <li class="nav-item">
-                                    <button class="btn btn-info mx-2" asp-area="" asp-controller="Events" asp-action="Events">Uredi račun</button>
-                                </li>
-                                <li class="nav-item">
-                                    <button class="btn btn-info" asp-area="" asp-controller="Home" asp-action="Index">Odjavi se</button>
-                                </li>
-                            <!-- </div> -->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark">Rezervacije</a>
+                            </li>
+                        }
+                        @if (true)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">Log in</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="RegisteredUser" asp-action="Create">Sign up</a>
+                            </li>
                         }
                     </ul>
                 </div>
