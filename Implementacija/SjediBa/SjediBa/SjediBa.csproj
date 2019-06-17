@@ -19,6 +19,15 @@
     </ItemGroup>
 
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\RegisteredUser\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\RegisteredUser\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\RegisteredUser\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\RegisteredUser\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\RegisteredUser\Index.cshtml" />
+    </ItemGroup>
+
+
     <ProjectExtensions><VisualStudio><UserProperties Properties_4launchSettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

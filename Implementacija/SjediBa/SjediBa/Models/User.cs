@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SjediBa.Models
 {
@@ -13,15 +14,12 @@ namespace SjediBa.Models
         public string Address { get; set; }
 
         public DateTime DateOfBirth { get; set; }
-
-        // public UserModel(string name, string surname, string address, DateTime dateOfBirth,int id)
-        // {
-        //     Id = id;
-        //     this.Name = name;
-        //     this.Surname = surname;
-        //     this.Address = address;
-        //     this.DateOfBirth = dateOfBirth;
-        // }
+        
+        public string Username { get; set; }
+        
+        public string password { get; set; }
+        
+        public ICollection<ReservationModel> ReservationModels { get; set; } = new List<ReservationModel>();
 
     }
 }

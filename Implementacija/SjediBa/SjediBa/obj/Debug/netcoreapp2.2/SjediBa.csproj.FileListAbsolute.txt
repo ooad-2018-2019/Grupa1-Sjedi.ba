@@ -60,8 +60,3 @@ C:/Users/bakir/source/repos/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/D
 C:/Users/bakir/source/repos/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/SjediBa.pdb
 C:/Users/bakir/source/repos/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/SjediBa.csproj.CopyComplete
 C:/Users/bakir/source/repos/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/SjediBa.csprojAssemblyReference.cache
-/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/Razor/Views/RegisteredUser/Create.g.cshtml.cs
-/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/Razor/Views/RegisteredUser/Delete.g.cshtml.cs
-/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/Razor/Views/RegisteredUser/Details.g.cshtml.cs
-/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/Razor/Views/RegisteredUser/Edit.g.cshtml.cs
-/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/Razor/Views/RegisteredUser/Index.g.cshtml.cs

@@ -8,14 +8,17 @@ namespace SjediBa.Models
 
     public class ProxyModel
     {
-         public ProxyModel(AccountModel account)
+         public ProxyModel(string username, string password)
          {
-         
-             this.Account = account;
+             
+             
          }
-        public AccountModel Account { get; set; }
 
-        public void Check() { }
+
+         public Object Check()
+         {
+             return null;
+         }
 
     }
 

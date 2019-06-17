@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SjediBa.Models
 {
-    public class UnregistredUserModel:UserModel
+    public class UnregistredUserModel : UserModel
     {
 
     }

@@ -1,0 +1,6 @@
+/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/obj/Debug/netcoreapp2.2/SjediBa.csprojAssemblyReference.cache
+/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/obj/Debug/netcoreapp2.2/SjediBa.csproj.CoreCompileInputs.cache
+/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/obj/Debug/netcoreapp2.2/SjediBa.RazorAssemblyInfo.cache
+/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/obj/Debug/netcoreapp2.2/SjediBa.RazorAssemblyInfo.cs
+/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/obj/Debug/netcoreapp2.2/SjediBa.AssemblyInfoInputs.cache
+/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/obj/Debug/netcoreapp2.2/SjediBa.AssemblyInfo.cs

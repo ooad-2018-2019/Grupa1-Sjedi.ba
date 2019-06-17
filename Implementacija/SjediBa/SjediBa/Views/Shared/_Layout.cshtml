@@ -28,7 +28,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav float-right">
+                    <ul class="navbar-nav">
                         @if(true) 
                         {
                             <!-- <div class="float-right"> -->
@@ -36,7 +36,7 @@
                                 <button class="btn btn-info mx-1    " asp-area="" asp-controller="Events" asp-action="Events">Obavijesti</button>
                             </li>
                             <li class="nav-item">
-                                <a asp-area="" asp-controller="RegisteredUser" asp-action="Edit">
+                                <a href="#">
                                     <button class="btn btn-info mx-1">Uredi račun</button>
                                 </a>
                             </li>
@@ -53,7 +53,7 @@
                             <!-- </div> -->
                         }
                     </ul> 
-                    <ul class="navbar-nav flex-grow-1 float-left">
+                    <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Početna</a>
                         </li>
@@ -72,7 +72,7 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">Log in</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="RegisteredUser" asp-action="Create">Sign up</a>
+                                <a class="nav-link text-dark" href="#">Sign up</a>
                             </li>
                         }
                     </ul>

@@ -12,9 +12,8 @@ namespace SjediBa.Models
         public EventModel EventModel { get; set; }
         public int SeatModelId { get; set; }
         public SeatModel SeatModel { get; set; }
-        public int RegisteredUserModelId { get; set; }
-        public RegisteredUserModel RegisteredUserModel { get; set; }
-
+        public int UserModelId { get; set; }
+        public UserModel UserModel { get; set; }
 
     }
 }

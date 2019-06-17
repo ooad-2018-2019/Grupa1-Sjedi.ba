@@ -7,6 +7,7 @@ namespace SjediBa.Models
 {
     public class LocalAdministratorModel : AdministratorModel
     {
-        public int LocalAdministratorModelId { get; set; }
+        //public int LocalAdministratorModelId { get; set; }
+        
     }
 }
