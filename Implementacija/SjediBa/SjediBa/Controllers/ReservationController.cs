@@ -4,7 +4,7 @@ using SjediBa.Models;
 
 namespace SjediBa.Controllers
 {
-    public class EventsController : Controller
+    public class ReservationController : Controller
     {
         public IActionResult Events()
         {
