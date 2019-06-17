@@ -1,11 +1,10 @@
 {
   "ExpandedNodes": [
+    "",
     "\\Implementacija",
     "\\Implementacija\\SjediBa",
-    "\\Implementacija\\SjediBa\\SjediBa",
-    "\\Implementacija\\SjediBa\\SjediBa\\Views",
-    "\\Implementacija\\SjediBa\\SjediBa\\Views\\Home"
+    "\\Implementacija\\SjediBa\\SjediBa"
   ],
-  "SelectedNode": "\\Implementacija\\SjediBa\\SjediBa\\Views\\Home\\Index.cshtml",
+  "SelectedNode": "\\Implementacija\\SjediBa\\SjediBa\\Startup.cs",
   "PreviewInSolutionExplorer": false
 }
