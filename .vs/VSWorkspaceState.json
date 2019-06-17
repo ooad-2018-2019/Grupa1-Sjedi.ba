@@ -3,8 +3,9 @@
     "",
     "\\Implementacija",
     "\\Implementacija\\SjediBa",
-    "\\Implementacija\\SjediBa\\SjediBa"
+    "\\Implementacija\\SjediBa\\SjediBa",
+    "\\Implementacija\\SjediBa\\SjediBa\\Models"
   ],
-  "SelectedNode": "\\Implementacija\\SjediBa\\SjediBa\\Startup.cs",
+  "SelectedNode": "\\Implementacija\\SjediBa\\SjediBa\\Models\\User.cs",
   "PreviewInSolutionExplorer": false
 }
