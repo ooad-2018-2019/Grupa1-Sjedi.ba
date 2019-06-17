@@ -26,8 +26,6 @@ namespace SjediBa.Models
         public DbSet<OrganizerModel> Oranizatori { get; set; }
         public DbSet<LocalAdministratorModel> Lokalni { get; set; }
         public DbSet<RegisteredUserModel> Registrovani { get; set; }
-        // public DbSet<UnregistredUserModel> Neregistrovani { get; set; }
-        // public DbSet<ProxyModel> proksi { get; set; }
         public DbSet<AccountModel> racuni { get; set; }
         public DbSet<NotificationModel> obav { get; set; }
         public DbSet<EventModel> dogad { get; set; }
@@ -62,8 +60,6 @@ namespace SjediBa.Models
             modelBuilder.Entity<OrganizerModel>().ToTable("Organizer");
             modelBuilder.Entity<LocalAdministratorModel>().ToTable("Local Administrator");
             modelBuilder.Entity< RegisteredUserModel>().ToTable("Registred User");
-            // modelBuilder.Entity<UnregistredUserModel>().ToTable("Unregistred User");
-            // modelBuilder.Entity<ProxyModel>().ToTable("Proxy");
             modelBuilder.Entity<AccountModel>().ToTable("Account");
             modelBuilder.Entity<NotificationModel>().ToTable("Notification");
             modelBuilder.Entity<EventModel>().ToTable("Event");

@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 
 namespace SjediBa.Models
 {
+
     public class ProxyModel
     {
-        // public ProxyModel(AccountModel account, int id)
-        // {
-        //     Id = id;
-        //     this.Account = account;
-        // }
-        public int ProxyModelId { get; set; }
-        public int AccountModelId { get; set; }
-        public AccountModel AccountModel { get; set; }
+         public ProxyModel(AccountModel account)
+         {
+         
+             this.Account = account;
+         }
+        public AccountModel Account { get; set; }
 
-        // public void Check() { }
+        public void Check() { }
 
     }
+
 }

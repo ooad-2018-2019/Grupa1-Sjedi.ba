@@ -7,16 +7,10 @@ namespace SjediBa.Models
 {
     public class RegisteredUserModel : UserModel
     {
-
+        // public int RegistredUserModelId { get; set; }
+        public int AccountModelId { get; set; }
+        public AccountModel AccountModel { get; set; }
         public ICollection<ReservationModel> ReservationModels { get; set; } = new List<ReservationModel>();
         public ICollection<NotificationModel> NotificationModels { get; set; } = new List<NotificationModel>();
-
-        // public RegisteredUserModel(string name, string surname, string address, DateTime dateOfBirth, List<ReservationModel> reservations, List<NotificationModel> notifications, int id) : base(name, surname, address, dateOfBirth,id)
-        // {
-
-        //     this.Reservations = reservations;
-        //     this.Notifications = notifications;
-            
-        // }
     }
 }

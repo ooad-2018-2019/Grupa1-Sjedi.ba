@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace SjediBa.Models
 {
-    public class LocalAdministratorModel : AdministratorModel
+    public class UnregistredUserModel:UserModel
     {
-        public int LocalAdministratorModelId { get; set; }
+
     }
 }
