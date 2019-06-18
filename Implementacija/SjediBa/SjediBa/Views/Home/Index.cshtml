@@ -31,7 +31,7 @@
                     <span>Nemate račun? Kreirajte ga</span>
                 </div>
                 <div class="col-sm-2">
-                    <a href="#">
+                    <a asp-area="" asp-controller="RegisteredUser" asp-action="Create">
                         <button class="btn btn-primary w-100">Kreiraj račun</button>
                     </a>
                 </div>
@@ -51,7 +51,7 @@
     }
     else{
         <script>
-            window.location.href = "Events/Events";
+            window.location.href = "Reservation/Reservation";
         </script>
     }
 </div>
