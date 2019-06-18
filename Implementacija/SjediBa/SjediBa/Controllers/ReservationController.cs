@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SjediBa.Models;
 
@@ -8,6 +9,7 @@ namespace SjediBa.Controllers
     {
         public IActionResult Reservation()
         {
+            ViewData["role"] = HttpContext.Session.GetString("role");
             return View();
         }
 

@@ -29,29 +29,40 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav">
-                        @if(true) 
-                        {
-                            <!-- <div class="float-right"> -->
-                            <li class="nav-item" >
-                                <button class="btn btn-info mx-1    " asp-area="" asp-controller="Reservation" asp-action="Reservation">Obavijesti</button>
+                        @if(ViewData["role"] != null && ViewData["role"].Equals("Registred")) {
+                           <li class="nav-item" >
+                                <button class="btn btn-info mx-1" href="#">Obavijesti</button>
                             </li>
+                        }
+                        @if(ViewData["role"] != null && (ViewData["role"].Equals("Registred") || ViewData["role"].Equals("Local") || ViewData["role"].Equals("Organizer") || ViewData["role"].Equals("Main")))
+                        {
                             <li class="nav-item">
                                 <a href="#">
                                     <button class="btn btn-info mx-1">Uredi račun</button>
                                 </a>
                             </li>
+                        }
+                        @if(ViewData["role"] != null && ViewData["role"].Equals("Organizer"))
+                        {
                             <li class="nav-item">
                                 <button class="btn btn-info mx-1">Kreiraj događaj</button>
                             </li>
+                        }
+                        @if(ViewData["role"] != null && ViewData["role"].Equals("Main"))
+                        {
                             <li class="nav-item">
                                 <button class="btn btn-info mx-1" asp-area="" asp-controller="Home" asp-action="Index">Dodaj lokaciju</button>
                             </li>
-                            <li class="nav-item">
-                                <button class="btn btn-info mx-1" asp-area="" asp-controller="Home" asp-action="Index">Odjavi se</button>
-                            </li>
-                            
-                            <!-- </div> -->
                         }
+                        @if (ViewData["role"] != null && (ViewData["role"].Equals("Registred") || ViewData["role"].Equals("Local") || ViewData["role"].Equals("Organizer") || ViewData["role"].Equals("Main")))
+                        {
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="Login" asp-action="LogOut">
+                                    <button class="btn btn-info mx-1">Odjavi se</button>
+                                </a>
+                            </li>
+                        }
+                        
                     </ul> 
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
@@ -60,13 +71,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Reservation" asp-action="Reservation">Događaji</a>
                         </li>
-                        @if(true)
+                        @if(ViewData["role"] != null && ViewData["role"].Equals("Registred"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark">Rezervacije</a>
                             </li>
                         }
-                        @if (true)
+                        @if (ViewData["role"] == null)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">Log in</a>

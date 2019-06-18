@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using SjediBa.Models;
@@ -10,8 +11,8 @@ namespace SjediBa.Controllers
     {
         public IActionResult Index()
         {
-            string test = HttpContext.Session.GetString("role");
-            ViewData["role"] = test;
+            
+            ViewData["role"] = HttpContext.Session.GetString("role");
             return View();
         }
 
@@ -19,34 +20,44 @@ namespace SjediBa.Controllers
         [HttpPost]
         public IActionResult Test(string email, string password)
         {
+            ProxyModel proxyModel = new ProxyModel(email, password);
+            Object result = proxyModel.Check();
+            
+            if (!(result is RegisteredUserModel) && !(result is UnregistredUserModel) && 
+                !(result is LocalAdministratorModel) && !(result is MainAdministratorModel) && 
+                !(result is OrganizerModel) && result == null)
+                return RedirectToAction("Index", "Home");
 
-            if (email.Length == null || password.Length == null || email.Length == 0 || password.Length == 0)
-                return RedirectToAction("Index");
-
-            using (var db = new DatabaseContext())
+            if (result is RegisteredUserModel)
             {
-
-                RegisteredUserModel r = db.Registrovani.Where(e => e.Username == email && e.password == password).FirstOrDefault();
-
-                UnregistredUserModel ur = db.Neregistrovani.Where(e => e.Username == email && e.password == password).FirstOrDefault();
-
-                OrganizerModel o = db.Oranizatori.Where(e => e.Username == email && e.password == password).FirstOrDefault();
-
-                LocalAdministratorModel lol = db.Lokalni.Where(e => e.Username == email && e.Password == password).FirstOrDefault();
-
-                MainAdministratorModel mom = db.Glavni.Where(e => e.Username == email && e.Password == password).FirstOrDefault();
-
-                if (r == null && ur == null && o == null && lol == null && mom == null)
-                    return RedirectToAction("Index");
-
-                // if (r != null)
-                //     return View("../Reservation/Reservation");
-                // ViewData["role"] = HttpContext.Session.GetString("role");
-
-                return RedirectToAction("Index");
-
-
+                HttpContext.Session.SetString("role", "Registred");
+                HttpContext.Session.SetInt32("id", (result as RegisteredUserModel).UserModelId);
+                return RedirectToAction("Index", "Home");
             }
+
+            if (result is OrganizerModel)
+            {
+                HttpContext.Session.SetString("role", "Organizer");
+                HttpContext.Session.SetInt32("id", (result as OrganizerModel).OrganizerModelId);
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (result is LocalAdministratorModel)
+            {
+                HttpContext.Session.SetString("role", "Local");
+                HttpContext.Session.SetInt32("id", (result as LocalAdministratorModel).AdministratorModelId);
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (result is MainAdministratorModel)
+            {
+                HttpContext.Session.SetString("role", "Main");
+                HttpContext.Session.SetInt32("id", (result as MainAdministratorModel).AdministratorModelId);
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("Index", "Home");
+            
 
         }
 

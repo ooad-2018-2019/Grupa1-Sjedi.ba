@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -21,12 +22,14 @@ namespace SjediBa.Controllers
         // GET: RegisteredUser
         public async Task<IActionResult> Index()
         {
+            ViewData["role"] = HttpContext.Session.GetString("role");
             return View(await _context.Registrovani.ToListAsync());
         }
 
         // GET: RegisteredUser/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            ViewData["role"] = HttpContext.Session.GetString("role");
             if (id == null)
             {
                 return NotFound();
@@ -45,6 +48,7 @@ namespace SjediBa.Controllers
         // GET: RegisteredUser/Create
         public IActionResult Create()
         {
+            ViewData["role"] = HttpContext.Session.GetString("role");
             return View();
         }
 
@@ -55,6 +59,7 @@ namespace SjediBa.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UserModelId,Name,Surname,Address,DateOfBirth,Username,password")] RegisteredUserModel registeredUserModel)
         {
+            ViewData["role"] = HttpContext.Session.GetString("role");
             if (ModelState.IsValid)
             {
                 _context.Add(registeredUserModel);
@@ -67,6 +72,7 @@ namespace SjediBa.Controllers
         // GET: RegisteredUser/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["role"] = HttpContext.Session.GetString("role");
             if (id == null)
             {
                 return NotFound();
@@ -87,6 +93,7 @@ namespace SjediBa.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("UserModelId,Name,Surname,Address,DateOfBirth,Username,password")] RegisteredUserModel registeredUserModel)
         {
+            ViewData["role"] = HttpContext.Session.GetString("role");
             if (id != registeredUserModel.UserModelId)
             {
                 return NotFound();
@@ -138,6 +145,7 @@ namespace SjediBa.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            ViewData["role"] = HttpContext.Session.GetString("role");
             var registeredUserModel = await _context.Registrovani.FindAsync(id);
             _context.Registrovani.Remove(registeredUserModel);
             await _context.SaveChangesAsync();

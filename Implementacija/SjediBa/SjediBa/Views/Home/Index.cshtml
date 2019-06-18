@@ -1,13 +1,13 @@
 ﻿@{
-        ViewData["Title"] = "Sjedi.ba";   
+    ViewData["Title"] = "Početna";
 }
 
 <div class="text-center">
-    @if (true)
+    @if (ViewData["role"] == null)
     {
-    <h1 class="display-4">Dobrodošli na Sjedi.ba @ViewData["role"]</h1>
+    <h1 class="display-4">Dobrodošli na Sjedi.ba</h1>
         <div>
-            <form class="form-horizontal  w-50 bg-light p-3 mx-auto rounded" method="post" action="Login/Test">
+            <form class="form-horizontal  w-50 bg-light p-3 mx-auto rounded" method="post" action="/Home/Test">
                 <div class="form-group row">
                     <label for="email" class="col-form-label col-sm-2">Username:</label>
                     <div class="col-sm-10">
@@ -32,7 +32,7 @@
                     <span>Nemate račun? Kreirajte ga</span>
                 </div>
                 <div class="col-sm-2">
-                    <a href="#">
+                    <a asp-area="" asp-controller="RegisteredUser" asp-action="Create">
                         <button class="btn btn-primary w-100">Kreiraj račun</button>
                     </a>
                 </div>
@@ -50,7 +50,7 @@
             </div>
         </div>
     }
-    else
+    else if(ViewData["role"].Equals("Registred"))
     {
         <script>
             window.location.href = "Reservation/Reservation";
