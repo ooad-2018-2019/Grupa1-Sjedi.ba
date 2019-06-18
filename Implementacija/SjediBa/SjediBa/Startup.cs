@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SjediBa.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace SjediBa
 {
@@ -27,7 +28,8 @@ namespace SjediBa
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(1); });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SjediBaDatabase")));
@@ -49,7 +51,7 @@ namespace SjediBa
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

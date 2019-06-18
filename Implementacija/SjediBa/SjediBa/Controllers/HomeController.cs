@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using SjediBa.Models;
 using System.Linq;
 
@@ -9,6 +10,8 @@ namespace SjediBa.Controllers
     {
         public IActionResult Index()
         {
+            string test = HttpContext.Session.GetString("role");
+            ViewData["role"] = test;
             return View();
         }
 
@@ -23,21 +26,22 @@ namespace SjediBa.Controllers
             using (var db = new DatabaseContext())
             {
 
-                RegisteredUserModel r = db.Registrovani.Where(e => e.Name == email && e.password == password).FirstOrDefault();
+                RegisteredUserModel r = db.Registrovani.Where(e => e.Username == email && e.password == password).FirstOrDefault();
 
-                UnregistredUserModel ur = db.Neregistrovani.Where(e => e.Name == email && e.password == password).FirstOrDefault();
+                UnregistredUserModel ur = db.Neregistrovani.Where(e => e.Username == email && e.password == password).FirstOrDefault();
 
-                OrganizerModel o = db.Oranizatori.Where(e => e.Name == email && e.password == password).FirstOrDefault();
+                OrganizerModel o = db.Oranizatori.Where(e => e.Username == email && e.password == password).FirstOrDefault();
 
-                LocalAdministratorModel lol = db.Lokalni.Where(e => e.Name == email && e.Password == password).FirstOrDefault();
+                LocalAdministratorModel lol = db.Lokalni.Where(e => e.Username == email && e.Password == password).FirstOrDefault();
 
-                MainAdministratorModel mom = db.Glavni.Where(e => e.Name == email && e.Password == password).FirstOrDefault();
+                MainAdministratorModel mom = db.Glavni.Where(e => e.Username == email && e.Password == password).FirstOrDefault();
 
                 if (r == null && ur == null && o == null && lol == null && mom == null)
                     return RedirectToAction("Index");
 
-                if (r != null)
-                    return View("../Events/Events");
+                // if (r != null)
+                //     return View("../Reservation/Reservation");
+                // ViewData["role"] = HttpContext.Session.GetString("role");
 
                 return RedirectToAction("Index");
 
