@@ -118,3 +118,4 @@ C:/Users/bakir/source/repos/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/D
 C:/Users/bakir/source/repos/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/SjediBa.pdb
 C:/Users/bakir/source/repos/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/SjediBa.csproj.CopyComplete
 C:/Users/bakir/source/repos/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/SjediBa.csprojAssemblyReference.cache
+/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/Debug/netcoreapp2.2/Razor/Views/Reservations/Reservations.g.cshtml.cs

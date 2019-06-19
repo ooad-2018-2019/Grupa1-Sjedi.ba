@@ -103,7 +103,7 @@
                         @if(ViewData["role"] != null && ViewData["role"].Equals("Registred"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="#">Rezervacije</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Reservations" asp-action="Reservations">Rezervacije</a>
                             </li>
                         }
                         @if (ViewData["role"] == null)
