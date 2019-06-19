@@ -1,0 +1,29 @@
+@using SjediBa.Controllers
+@{
+    ViewData["Title"] = "Rezervacije";
+    List<ReservationModel> reservationModels = ReservationsController.getReservationsForUser((int) ViewData["id"]);
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="clearfix">
+    <table class="float-left w-100">
+        <tr>
+            <th>ID</th>
+            <th>Događaj</th>
+            <th>Datum</th>
+            <th>Vrijeme</th>
+            <th>Organizator</th>
+        </tr>
+        @foreach (var reservation in reservationModels)
+        {
+            <tr>
+                <td>@reservation.ReservationModelId</td>
+                <td>@reservation.EventModel.Name</td>
+                <td>@reservation.EventModel.StartDate.ToString("dd. MM. yy.")</td>
+                <td>@reservation.EventModel.StartDate.ToShortTimeString()</td>
+                <td>@reservation.SeatModel.RowSeat</td>
+                
+            </tr>
+        }
+    </table>
+</div>
