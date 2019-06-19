@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SjediBa.Models;
@@ -15,6 +16,7 @@ namespace SjediBa.Controllers
 
         public EventController(DatabaseContext context)
         {
+            
             _context = context;
         }
 
@@ -48,8 +50,11 @@ namespace SjediBa.Controllers
         // GET: Event/Create
         public IActionResult Create()
         {
+            ViewData["role"] = HttpContext.Session.GetString("role");
+            ViewData["id"] = HttpContext.Session.GetInt32("id");
             ViewData["OrganizerModelId"] = new SelectList(_context.Oranizatori, "OrganizerModelId", "OrganizerModelId");
             ViewData["SpaceModelId"] = new SelectList(_context.Lokacije, "SpaceModelId", "SpaceModelId");
+            ViewData["SpaceModelName"] = new SelectList(_context.Lokacije, "Name", "Name");
             return View();
         }
 
@@ -58,17 +63,31 @@ namespace SjediBa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventModelId,Name,OrganizerModelId,SpaceModelId,StartDate,EndDate")] EventModel eventModel)
+        public async Task<IActionResult> Create([Bind("EventModelId,Name,OrganizerModelId,SpaceModelId,StartDate,EndDate")] EventModel eventModel, string SpaceModelId,int organizator)
         {
             if (ModelState.IsValid)
             {
+                eventModel.OrganizerModelId = organizator;
+                eventModel.SpaceModelId = Int32.Parse(SpaceModelId);
+
                 _context.Add(eventModel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             ViewData["OrganizerModelId"] = new SelectList(_context.Oranizatori, "OrganizerModelId", "OrganizerModelId", eventModel.OrganizerModelId);
             ViewData["SpaceModelId"] = new SelectList(_context.Lokacije, "SpaceModelId", "SpaceModelId", eventModel.SpaceModelId);
+            ViewData["SpaceModelId"] = new SelectList(_context.Lokacije, "SpaceModelId", "SpaceModelId");
+            ViewData["SpaceModelName"] = new SelectList(_context.Lokacije, "Name", "Name");
             return View(eventModel);
+        }
+
+        public static List<SpaceModel> GetSpaces()
+        {
+            using(var db = new DatabaseContext())
+            {
+                List<SpaceModel> spaceModels = db.Lokacije.ToList();
+                return spaceModels;
+            }            
         }
 
         // GET: Event/Edit/5

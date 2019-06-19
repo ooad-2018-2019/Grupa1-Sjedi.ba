@@ -55,3 +55,15 @@ function SetPrice() {
         document.getElementById("seatPrice").innerHTML = "Morate odabrati sektor da biste vidjelli cijenu!";
     }
 }
+
+function SetLocations(obj) {
+    var space_element = document.getElementById('spaceModelId');
+    console.log(obj);
+    for (var i = 0; i < obj.length; i++) {
+        var option = document.createElement("option");
+        option.setAttribute("value", obj[i].SpaceModelId);
+        option.text = obj[i].Name;
+        space_element.add(option);
+    }
+    
+}

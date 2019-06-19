@@ -1,50 +1,66 @@
 ﻿@model SjediBa.Models.EventModel
+@using SjediBa.Controllers
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Kreiranje događaja";
 }
 
-<h1>Create</h1>
+@{
+    List<SpaceModel> spaceModels = EventController.GetSpaces();
 
-<h4>EventModel</h4>
+}
+
+@{ var json = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(spaceModels));
+}
+
+<h1 class="text-center">Kreiranje događaja</h1>
+
 <hr />
-<div class="row">
+<div class="row justify-content-center">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">Naziv događaja</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="OrganizerModelId" class="control-label"></label>
-                <select asp-for="OrganizerModelId" class ="form-control" asp-items="ViewBag.OrganizerModelId"></select>
+                <label class="control-label">Lokacija događaja</label>
+                <select name="SpaceModelId" id="SpaceModelId" class="form-control"></select>
             </div>
             <div class="form-group">
-                <label asp-for="SpaceModelId" class="control-label"></label>
-                <select asp-for="SpaceModelId" class ="form-control" asp-items="ViewBag.SpaceModelId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
+                <label asp-for="StartDate" class="control-label">Vrijeme početka</label>
                 <input asp-for="StartDate" class="form-control" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EndDate" class="control-label"></label>
+                <label asp-for="EndDate" class="control-label">Vrijeme završavanja</label>
                 <input asp-for="EndDate" class="form-control" />
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
+            <input hidden="true" name="organizator" value="@ViewData["id"]" />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Kreiraj događaj" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+<script>
+    SetLocations(@json);
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    function SetLocations(obj) {
+        var space_element = document.getElementById('SpaceModelId');
+        console.log(obj);
+        for (var i = 0; i < obj.length; i++) {
+            var option = document.createElement("option");
+            option.setAttribute("value",  obj[i].SpaceModelId);
+            option.text = obj[i].Name;
+            space_element.add(option);
+        }
+
+    }
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

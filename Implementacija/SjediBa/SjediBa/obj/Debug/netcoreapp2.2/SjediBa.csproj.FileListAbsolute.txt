@@ -119,3 +119,4 @@ C:\Users\bakir\source\repos\Grupa1-Sjedi.ba\Implementacija\SjediBa\SjediBa\obj\D
 C:\Users\bakir\source\repos\Grupa1-Sjedi.ba\Implementacija\SjediBa\SjediBa\obj\Debug\netcoreapp2.2\SjediBa.dll
 C:\Users\bakir\source\repos\Grupa1-Sjedi.ba\Implementacija\SjediBa\SjediBa\obj\Debug\netcoreapp2.2\SjediBa.pdb
 C:\Users\bakir\source\repos\Grupa1-Sjedi.ba\Implementacija\SjediBa\SjediBa\obj\Debug\netcoreapp2.2\SjediBa.csproj.CopyComplete
+C:\Users\bakir\source\repos\Grupa1-Sjedi.ba\Implementacija\SjediBa\SjediBa\obj\Debug\netcoreapp2.2\SjediBa.csprojAssemblyReference.cache

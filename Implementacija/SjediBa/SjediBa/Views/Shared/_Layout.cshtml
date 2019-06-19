@@ -29,12 +29,8 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav">
-                        @if(ViewData["role"] != null && ViewData["role"].Equals("Registred")) {
-                           <li class="nav-item" >
-                                <button class="btn btn-info mx-1" href="#">Obavijesti</button>
-                            </li>
-                        }
-                        @if(ViewData["role"] != null && (ViewData["role"].Equals("Registred") || ViewData["role"].Equals("Local") || ViewData["role"].Equals("Organizer") || ViewData["role"].Equals("Main")))
+                        
+                        @if(ViewData["role"] != null && (ViewData["role"].Equals("Registred") || ViewData["role"].Equals("Organizer")))
                         {
                             if(ViewData["role"].Equals("Registred"))
                             {
@@ -65,9 +61,11 @@
                         }
                         @if(ViewData["role"] != null && ViewData["role"].Equals("Organizer"))
                         {
-                            <li class="nav-item">
-                                <button class="btn btn-info mx-1">Kreiraj događaj</button>
-                            </li>
+                                <li class="nav-item">
+                                    <a asp-area="" asp-action="Create" asp-controller="Event">
+                                        <button class="btn btn-info mx-1">Kreiraj događaj</button>
+                                    </a>
+                                </li>
                         }
                         @if(ViewData["role"] != null && ViewData["role"].Equals("Main"))
                         {

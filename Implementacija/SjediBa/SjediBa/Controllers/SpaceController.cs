@@ -87,13 +87,6 @@ namespace SjediBa.Controllers
                         sectionModel.SpaceModelId = spaceModel.SpaceModelId;
                         _context.Add(sectionModel);
                         await _context.SaveChangesAsync();
-                        foreach (SeatModel seatModel in sectionModel.SeatModels)
-                        {
-                            
-                            seatModel.SectionModelId = sectionModel.SectionModelId;
-                            _context.Add(seatModel);
-                            await _context.SaveChangesAsync();
-                        }
                         
                     }
                     
