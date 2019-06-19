@@ -1,41 +1,117 @@
 ﻿@model SjediBa.Models.SpaceModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Dodaj lokaciju";
 }
 
-<h1>Create</h1>
-
-<h4>SpaceModel</h4>
+<h1>Dodaj lokaciju i lokalnog administratora</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LocalAdministratorModelId" class="control-label"></label>
-                <select asp-for="LocalAdministratorModelId" class ="form-control" asp-items="ViewBag.LocalAdministratorModelId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div>
+    <table class="float-left w-100">
+        <tr>
+            <td>
+                <div>
+                    <form asp-action="Create">
+                        <table class="float-left w-100" >
+                            <tr>
+                                <td>
+                                    <div class="col-md-11">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <label asp-for="Name" class="control-label">Naziv lokacije</label>
+                                            <input required="true" asp-for="Name" class="form-control"/>
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Address" class="control-label">Adresa lokacije</label>
+                                            <input required="true" asp-for="Address" class="form-control"/>
+                                            <span asp-validation-for="Address" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Username administratora</label>
+                                            <input required="true" name="Username" class="form-control"/>
+                                            <span class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Password za administratora</label>
+                                            <input type="password" required="true" name="Password" class="form-control"/>
+                                            <span class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Potvrdite password</label>
+                                            <input type="password" required="true" name="Password2" class="form-control"/>
+                                            <span class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-11">
+
+                                        <div class="text-danger"></div>
+                                        <div class="form-group">
+                                            <label class="control-label">Ime administratora</label>
+                                            <input required="true" name="AdminName" class="form-control"/>
+                                            <span class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Prezime administratora</label>
+                                            <input required="true" name="Surename" class="form-control"/>
+                                            <span class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">Adresa stanovanja administratora</label>
+                                            <input required="true" name="AdminAddress" class="form-control"/>
+                                            <span class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Datum rođenja administratora</label>
+                                            <input required="true" type="date" name="Date" class="form-control"/>
+                                            <span class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" value="Kreiraj" class="btn btn-primary"/>
+                                        </div>
+                                    </div>
+                                </td>
+                    
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <form asp-action="AddSection">
+                        <div class="col-md-11">
+                            <div class="form-group">
+                                <label class="control-label">Naziv Sektora</label>
+                                <input required="true" name="SectorName" class="form-control"/>
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Cijena sjedišta u sektoru</label>
+                                <input required="true" id="seatPrice" type="number" name="SeatPrice" class="form-control"/>
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Broj sjedišta</label>
+                                <input required="true" type="number" name="NumberOfSeats" class="form-control"/>
+                                <span class="text-danger"></span>
+                            </div>
+                            <div>
+                                <input type="submit" value="Dodaj sektor" class="btn btn-primary"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </table>
+    
+    
 </div>
 
-<div>
-    <a asp-controller="Home" asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
