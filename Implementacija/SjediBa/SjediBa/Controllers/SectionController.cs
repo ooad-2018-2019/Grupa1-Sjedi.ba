@@ -21,27 +21,31 @@ namespace SjediBa.Controllers
         // GET: Section
         public async Task<IActionResult> Index()
         {
-            var databaseContext = _context.Sektori.Include(s => s.SpaceModel);
-            return View(await databaseContext.ToListAsync());
+//            var databaseContext = _context.Sektori.Include(s => s.SpaceModel);
+//            return View(await databaseContext.ToListAsync());
+            return null;
+
         }
 
         // GET: Section/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+//            if (id == null)
+//            {
+//                return NotFound();
+//            }
+//
+//            var sectionModel = await _context.Sektori
+//                .Include(s => s.SpaceModel)
+//                .FirstOrDefaultAsync(m => m.SectionModelId == id);
+//            if (sectionModel == null)
+//            {
+//                return NotFound();
+//            }
+//
+//            return View(sectionModel);
+            return null;
 
-            var sectionModel = await _context.Sektori
-                .Include(s => s.SpaceModel)
-                .FirstOrDefaultAsync(m => m.SectionModelId == id);
-            if (sectionModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(sectionModel);
         }
 
         // GET: Section/Create
@@ -58,31 +62,35 @@ namespace SjediBa.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("SectionModelId,SpaceModelId,SeatPrices,Name")] SectionModel sectionModel)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(sectionModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["SpaceModelId"] = new SelectList(_context.Lokacije, "SpaceModelId", "SpaceModelId", sectionModel.SpaceModelId);
-            return View(sectionModel);
+//            if (ModelState.IsValid)
+//            {
+//                _context.Add(sectionModel);
+//                await _context.SaveChangesAsync();
+//                return RedirectToAction(nameof(Index));
+//            }
+//            ViewData["SpaceModelId"] = new SelectList(_context.Lokacije, "SpaceModelId", "SpaceModelId", sectionModel.SpaceModelId);
+//            return View(sectionModel);
+            return null;
+
         }
 
         // GET: Section/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+//            if (id == null)
+//            {
+//                return NotFound();
+//            }
+//
+//            var sectionModel = await _context.Sektori.FindAsync(id);
+//            if (sectionModel == null)
+//            {
+//                return NotFound();
+//            }
+//            ViewData["SpaceModelId"] = new SelectList(_context.Lokacije, "SpaceModelId", "SpaceModelId", sectionModel.SpaceModelId);
+//            return View(sectionModel);
+            return null;
 
-            var sectionModel = await _context.Sektori.FindAsync(id);
-            if (sectionModel == null)
-            {
-                return NotFound();
-            }
-            ViewData["SpaceModelId"] = new SelectList(_context.Lokacije, "SpaceModelId", "SpaceModelId", sectionModel.SpaceModelId);
-            return View(sectionModel);
         }
 
         // POST: Section/Edit/5
@@ -92,52 +100,56 @@ namespace SjediBa.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("SectionModelId,SpaceModelId,SeatPrices,Name")] SectionModel sectionModel)
         {
-            if (id != sectionModel.SectionModelId)
-            {
-                return NotFound();
-            }
+//            if (id != sectionModel.SectionModelId)
+//            {
+//                return NotFound();
+//            }
+//
+//            if (ModelState.IsValid)
+//            {
+//                try
+//                {
+//                    _context.Update(sectionModel);
+//                    await _context.SaveChangesAsync();
+//                }
+//                catch (DbUpdateConcurrencyException)
+//                {
+//                    if (!SectionModelExists(sectionModel.SectionModelId))
+//                    {
+//                        return NotFound();
+//                    }
+//                    else
+//                    {
+//                        throw;
+//                    }
+//                }
+//                return RedirectToAction(nameof(Index));
+//            }
+//            ViewData["SpaceModelId"] = new SelectList(_context.Lokacije, "SpaceModelId", "SpaceModelId", sectionModel.SpaceModelId);
+//            return View(sectionModel);
+            return null;
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(sectionModel);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!SectionModelExists(sectionModel.SectionModelId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["SpaceModelId"] = new SelectList(_context.Lokacije, "SpaceModelId", "SpaceModelId", sectionModel.SpaceModelId);
-            return View(sectionModel);
         }
 
         // GET: Section/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+//            if (id == null)
+//            {
+//                return NotFound();
+//            }
+//
+//            var sectionModel = await _context.Sektori
+//                .Include(s => s.SpaceModel)
+//                .FirstOrDefaultAsync(m => m.SectionModelId == id);
+//            if (sectionModel == null)
+//            {
+//                return NotFound();
+//            }
+//
+//            return View(sectionModel);
+            return null;
 
-            var sectionModel = await _context.Sektori
-                .Include(s => s.SpaceModel)
-                .FirstOrDefaultAsync(m => m.SectionModelId == id);
-            if (sectionModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(sectionModel);
         }
 
         // POST: Section/Delete/5
@@ -145,10 +157,13 @@ namespace SjediBa.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var sectionModel = await _context.Sektori.FindAsync(id);
-            _context.Sektori.Remove(sectionModel);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+//            var sectionModel = await _context.Sektori.FindAsync(id);
+//            _context.Sektori.Remove(sectionModel);
+//            await _context.SaveChangesAsync();
+//            return RedirectToAction(nameof(Index));
+            return null;
+
+
         }
 
         private bool SectionModelExists(int id)

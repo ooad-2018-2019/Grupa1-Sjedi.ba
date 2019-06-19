@@ -50,7 +50,7 @@
             </div>
         </div>
     }
-    else if(ViewData["role"].Equals("Registred"))
+    else if(ViewData["role"] != null)
     {
         <script>
             window.location.href = "Reservation/Reservation";

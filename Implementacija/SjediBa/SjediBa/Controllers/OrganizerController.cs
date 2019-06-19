@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 using SjediBa.Models;
 
@@ -21,12 +23,16 @@ namespace SjediBa.Controllers
         // GET: Organizer
         public async Task<IActionResult> Index()
         {
+            ViewData["role"] = HttpContext.Session.GetString("role");
+            ViewData["id"] = HttpContext.Session.GetInt32("id");
             return View(await _context.Oranizatori.ToListAsync());
         }
 
         // GET: Organizer/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            ViewData["role"] = HttpContext.Session.GetString("role");
+            ViewData["id"] = HttpContext.Session.GetInt32("id");
             if (id == null)
             {
                 return NotFound();
@@ -45,6 +51,8 @@ namespace SjediBa.Controllers
         // GET: Organizer/Create
         public IActionResult Create()
         {
+            ViewData["role"] = HttpContext.Session.GetString("role");
+            ViewData["id"] = HttpContext.Session.GetInt32("id");
             return View();
         }
 
@@ -53,13 +61,41 @@ namespace SjediBa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrganizerModelId,Name,Surname,Address,DateOfBirth,Username,password")] OrganizerModel organizerModel)
+        public async Task<IActionResult> Create([Bind("OrganizerModelId,Name,Surname,Address,DateOfBirth,Username,password")] OrganizerModel organizerModel, string password2)
         {
+            ViewData["role"] = HttpContext.Session.GetString("role");
+            ViewData["id"] = HttpContext.Session.GetInt32("id");
             if (ModelState.IsValid)
             {
-                _context.Add(organizerModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                using (var db = new DatabaseContext())
+                {
+                    if(organizerModel.DateOfBirth.CompareTo(DateTime.Now) >= 0 || organizerModel.DateOfBirth.Year < 1900)
+                        return View();
+                    
+                    if(password2 != organizerModel.password)
+                        return View();
+                    
+                    RegisteredUserModel registered = db.Registrovani.Where(e => e.Username == organizerModel.Username).FirstOrDefault();
+
+                    UnregistredUserModel unregistred = db.Neregistrovani.Where(e => e.Username == organizerModel.Username).FirstOrDefault();
+
+                    OrganizerModel organizer = db.Oranizatori.Where(e => e.Username == organizerModel.Username).FirstOrDefault();
+
+                    LocalAdministratorModel local = db.Lokalni.Where(e => e.Username == organizerModel.Username).FirstOrDefault();
+
+                    MainAdministratorModel main = db.Glavni.Where(e => e.Username == organizerModel.Username).FirstOrDefault();
+
+                    if (!(registered == null && unregistred == null && organizer == null && local == null && main == null))
+                        return View();
+                    
+                    _context.Add(organizerModel);
+                    await _context.SaveChangesAsync();
+                    
+                    HttpContext.Session.SetString("role", "Organizer");
+                    HttpContext.Session.SetInt32("id", organizerModel.OrganizerModelId);
+                    return RedirectToAction("Index", "Home");
+                }
+                
             }
             return View(organizerModel);
         }
@@ -67,6 +103,8 @@ namespace SjediBa.Controllers
         // GET: Organizer/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["role"] = HttpContext.Session.GetString("role");
+            ViewData["id"] = HttpContext.Session.GetInt32("id");
             if (id == null)
             {
                 return NotFound();
@@ -85,15 +123,51 @@ namespace SjediBa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrganizerModelId,Name,Surname,Address,DateOfBirth,Username,password")] OrganizerModel organizerModel)
+        public async Task<IActionResult> Edit(int id, [Bind("OrganizerModelId,Name,Surname,Address,DateOfBirth,Username,password")] OrganizerModel organizerModel, string password2)
         {
-            if (id != organizerModel.OrganizerModelId)
-            {
-                return NotFound();
-            }
+            ViewData["role"] = HttpContext.Session.GetString("role");
+            ViewData["id"] = HttpContext.Session.GetInt32("id");
+            organizerModel.OrganizerModelId = id;
 
             if (ModelState.IsValid)
             {
+                using (var db = new DatabaseContext())
+                {
+                    if (organizerModel.DateOfBirth.CompareTo(DateTime.Now) >= 0 ||
+                        organizerModel.DateOfBirth.Year < 1900)
+                        return View();
+
+                    if(!(password2 == null || password2.Length == 0) && (organizerModel.password == null || organizerModel.password.Length == 0))
+                        return View();
+                    
+                    if((password2 == null || password2.Length == 0) && !(organizerModel.password == null || organizerModel.password.Length == 0))
+                        return View();
+                    
+                    if (!(password2 == null || password2.Length == 0) && !(organizerModel.password == null || organizerModel.password.Length == 0) && password2 != organizerModel.password)
+                        return View();
+                    
+                    
+
+                    OrganizerModel currentRegistered = db.Oranizatori.Where(e => e.OrganizerModelId == HttpContext.Session.GetInt32("id")).FirstOrDefault();
+                    
+                    RegisteredUserModel registered = db.Registrovani.Where(e => e.Username == organizerModel.Username).FirstOrDefault();
+
+                    UnregistredUserModel unregistred = db.Neregistrovani.Where(e => e.Username == organizerModel.Username).FirstOrDefault();
+
+                    OrganizerModel organizer = db.Oranizatori.Where(e => e.Username == organizerModel.Username).FirstOrDefault();
+
+                    LocalAdministratorModel local = db.Lokalni.Where(e => e.Username == organizerModel.Username).FirstOrDefault();
+
+                    MainAdministratorModel main = db.Glavni.Where(e => e.Username == organizerModel.Username).FirstOrDefault();
+
+                    if (!(registered == null && unregistred == null && organizer == null && local == null && main == null) && currentRegistered.Username != organizerModel.Username)
+                        return View();
+
+                    if (organizerModel.password == null || organizerModel.password.Length == 0)
+                        organizerModel.password = currentRegistered.password;
+                }
+                
+                
                 try
                 {
                     _context.Update(organizerModel);
@@ -105,12 +179,10 @@ namespace SjediBa.Controllers
                     {
                         return NotFound();
                     }
-                    else
-                    {
-                        throw;
-                    }
+
+                    throw;
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             return View(organizerModel);
         }

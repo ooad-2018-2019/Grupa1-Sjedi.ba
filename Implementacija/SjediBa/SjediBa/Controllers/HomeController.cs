@@ -13,6 +13,7 @@ namespace SjediBa.Controllers
         {
             
             ViewData["role"] = HttpContext.Session.GetString("role");
+            ViewData["id"] = HttpContext.Session.GetInt32("id");
             return View();
         }
 

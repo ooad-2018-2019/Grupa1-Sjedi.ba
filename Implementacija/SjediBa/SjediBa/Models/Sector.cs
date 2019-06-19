@@ -12,7 +12,7 @@ namespace SjediBa.Models
         public int SectionModelId { get; set; }
         public ICollection<SeatModel> SeatModels { get; set; } = new List<SeatModel>();
         public int SpaceModelId { get; set; }
-        public SpaceModel SpaceModel { get; set; }
+        //public SpaceModel SpaceModel { get; set; }
         public int SeatPrices { get; set; }
         public string Name { get; set; }
 

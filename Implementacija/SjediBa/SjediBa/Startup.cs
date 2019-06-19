@@ -31,7 +31,7 @@ namespace SjediBa
             services.AddDistributedMemoryCache();
             services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(1); });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions( options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SjediBaDatabase")));
         }
 

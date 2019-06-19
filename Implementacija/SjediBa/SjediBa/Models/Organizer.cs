@@ -21,6 +21,5 @@ namespace SjediBa.Models
         
         public string password { get; set; }
         
-        public ICollection<EventModel> EventModels { get; set; } = new List<EventModel>();
     }
 }

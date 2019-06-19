@@ -57,14 +57,41 @@ namespace SjediBa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserModelId,Name,Surname,Address,DateOfBirth,Username,password")] RegisteredUserModel registeredUserModel)
+        public async Task<IActionResult> Create([Bind("UserModelId,Name,Surname,Address,DateOfBirth,Username,password")] RegisteredUserModel registeredUserModel, string password2)
         {
+            
             ViewData["role"] = HttpContext.Session.GetString("role");
+            ViewData["id"] = HttpContext.Session.GetInt32("id");
             if (ModelState.IsValid)
             {
-                _context.Add(registeredUserModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                using (var db = new DatabaseContext())
+                {
+                    if(registeredUserModel.DateOfBirth.CompareTo(DateTime.Now) >= 0 || registeredUserModel.DateOfBirth.Year < 1900)
+                        return View();
+                    
+                    if(password2 != registeredUserModel.password)
+                        return View();
+                    
+                    RegisteredUserModel registered = db.Registrovani.Where(e => e.Username == registeredUserModel.Username).FirstOrDefault();
+
+                    UnregistredUserModel unregistred = db.Neregistrovani.Where(e => e.Username == registeredUserModel.Username).FirstOrDefault();
+
+                    OrganizerModel organizer = db.Oranizatori.Where(e => e.Username == registeredUserModel.Username).FirstOrDefault();
+
+                    LocalAdministratorModel local = db.Lokalni.Where(e => e.Username == registeredUserModel.Username).FirstOrDefault();
+
+                    MainAdministratorModel main = db.Glavni.Where(e => e.Username == registeredUserModel.Username).FirstOrDefault();
+
+                    if (!(registered == null && unregistred == null && organizer == null && local == null && main == null))
+                        return View();
+                    
+                    _context.Add(registeredUserModel);
+                    await _context.SaveChangesAsync();
+                    HttpContext.Session.SetString("role", "Registred");
+                    HttpContext.Session.SetInt32("id", registeredUserModel.UserModelId);
+                    
+                    return RedirectToAction("Index", "Home");
+                }
             }
             return View(registeredUserModel);
         }
@@ -73,6 +100,7 @@ namespace SjediBa.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             ViewData["role"] = HttpContext.Session.GetString("role");
+            ViewData["id"] = HttpContext.Session.GetInt32("id");
             if (id == null)
             {
                 return NotFound();
@@ -91,16 +119,51 @@ namespace SjediBa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserModelId,Name,Surname,Address,DateOfBirth,Username,password")] RegisteredUserModel registeredUserModel)
+        public async Task<IActionResult> Edit(int id, [Bind("UserModelId,Name,Surname,Address,DateOfBirth,Username,password")] RegisteredUserModel registeredUserModel, string password2)
         {
             ViewData["role"] = HttpContext.Session.GetString("role");
-            if (id != registeredUserModel.UserModelId)
-            {
-                return NotFound();
-            }
+            ViewData["id"] = HttpContext.Session.GetInt32("id");
+            registeredUserModel.UserModelId = id;
 
             if (ModelState.IsValid)
             {
+                using (var db = new DatabaseContext())
+                {
+                    if (registeredUserModel.DateOfBirth.CompareTo(DateTime.Now) >= 0 ||
+                        registeredUserModel.DateOfBirth.Year < 1900)
+                        return View();
+
+                    if(!(password2 == null || password2.Length == 0) && (registeredUserModel.password == null || registeredUserModel.password.Length == 0))
+                        return View();
+                    
+                    if((password2 == null || password2.Length == 0) && !(registeredUserModel.password == null || registeredUserModel.password.Length == 0))
+                        return View();
+                    
+                    if (!(password2 == null || password2.Length == 0) && !(registeredUserModel.password == null || registeredUserModel.password.Length == 0) && password2 != registeredUserModel.password)
+                        return View();
+                    
+                    
+
+                    RegisteredUserModel currentRegistered = db.Registrovani.Where(e => e.UserModelId == HttpContext.Session.GetInt32("id")).FirstOrDefault();
+                    
+                    RegisteredUserModel registered = db.Registrovani.Where(e => e.Username == registeredUserModel.Username).FirstOrDefault();
+
+                    UnregistredUserModel unregistred = db.Neregistrovani.Where(e => e.Username == registeredUserModel.Username).FirstOrDefault();
+
+                    OrganizerModel organizer = db.Oranizatori.Where(e => e.Username == registeredUserModel.Username).FirstOrDefault();
+
+                    LocalAdministratorModel local = db.Lokalni.Where(e => e.Username == registeredUserModel.Username).FirstOrDefault();
+
+                    MainAdministratorModel main = db.Glavni.Where(e => e.Username == registeredUserModel.Username).FirstOrDefault();
+
+                    if (!(registered == null && unregistred == null && organizer == null && local == null && main == null) && currentRegistered.Username != registeredUserModel.Username)
+                        return View();
+
+                    if (registeredUserModel.password == null || registeredUserModel.password.Length == 0)
+                        registeredUserModel.password = currentRegistered.password;
+                }
+
+
                 try
                 {
                     _context.Update(registeredUserModel);
@@ -112,10 +175,8 @@ namespace SjediBa.Controllers
                     {
                         return NotFound();
                     }
-                    else
-                    {
-                        throw;
-                    }
+
+                    throw;
                 }
                 return RedirectToAction("Index", "Home");
             }

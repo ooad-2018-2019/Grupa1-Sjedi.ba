@@ -36,11 +36,32 @@
                         }
                         @if(ViewData["role"] != null && (ViewData["role"].Equals("Registred") || ViewData["role"].Equals("Local") || ViewData["role"].Equals("Organizer") || ViewData["role"].Equals("Main")))
                         {
-                            <li class="nav-item">
-                                <a href="#">
-                                    <button class="btn btn-info mx-1">Uredi račun</button>
-                                </a>
-                            </li>
+                            if(ViewData["role"].Equals("Registred"))
+                            {
+                                <li class="nav-item">
+                                    <a asp-area="" asp-controller="RegisteredUser" asp-action="Edit" asp-route-id="@ViewData["id"]" >
+                                        <button class="btn btn-info mx-1">Uredi račun</button>
+                                    </a>
+                                </li>
+                            }
+                            else if(ViewData["role"].Equals("Local"))
+                            {
+                                <li class="nav-item">
+                                    <a asp-area="" asp-action="Edit" asp-route-id="@ViewData["id"]" asp-controller="LocalAdministrator">
+                                        <button class="btn btn-info mx-1">Uredi račun</button>
+                                    </a>
+                                </li>
+                            }
+                            else if(ViewData["role"].Equals("Organizer"))
+                            {
+                                <li class="nav-item">
+                                    <a asp-area="" asp-action="Edit" asp-route-id="@ViewData["id"]" asp-controller="Organizer">
+                                        <button class="btn btn-info mx-1">Uredi račun</button>
+                                    </a>
+                                </li>
+                            }
+                            
+                            
                         }
                         @if(ViewData["role"] != null && ViewData["role"].Equals("Organizer"))
                         {
@@ -54,6 +75,14 @@
                                 <button class="btn btn-info mx-1" asp-area="" asp-controller="Home" asp-action="Index">Dodaj lokaciju</button>
                             </li>
                         }
+                        @if (ViewData["role"] != null && (string) ViewData["role"] == "Local")
+                        {
+                            <li class="nav-item">
+                                <a asp-area="" asp-controller="Organizer" asp-action="Create">
+                                    <button class="btn btn-info mx-1">Kreiraj organizatorski račun</button>
+                                </a>
+                            </li>
+                        }   
                         @if (ViewData["role"] != null && (ViewData["role"].Equals("Registred") || ViewData["role"].Equals("Local") || ViewData["role"].Equals("Organizer") || ViewData["role"].Equals("Main")))
                         {
                             <li class="nav-item">
@@ -62,7 +91,7 @@
                                 </a>
                             </li>
                         }
-                        
+                                                        
                     </ul> 
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
@@ -74,7 +103,7 @@
                         @if(ViewData["role"] != null && ViewData["role"].Equals("Registred"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark">Rezervacije</a>
+                                <a class="nav-link text-dark" href="#">Rezervacije</a>
                             </li>
                         }
                         @if (ViewData["role"] == null)

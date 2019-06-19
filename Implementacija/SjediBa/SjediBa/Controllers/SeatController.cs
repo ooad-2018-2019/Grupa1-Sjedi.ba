@@ -15,40 +15,45 @@ namespace SjediBa.Controllers
 
         public SeatController(DatabaseContext context)
         {
-            _context = context;
+         //   _context = context;
         }
 
         // GET: Seat
         public async Task<IActionResult> Index()
         {
-            var databaseContext = _context.Sjedista.Include(s => s.SectionModel);
-            return View(await databaseContext.ToListAsync());
+//            var databaseContext = _context.Sjedista.Include(s => s.SectionModel);
+//            return View(await databaseContext.ToListAsync());
+            return null;
         }
 
         // GET: Seat/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+//            if (id == null)
+//            {
+//                return NotFound();
+//            }
+//
+//            var seatModel = await _context.Sjedista
+//                .Include(s => s.SectionModel)
+//                .FirstOrDefaultAsync(m => m.SeatModelId == id);
+//            if (seatModel == null)
+//            {
+//                return NotFound();
+//            }
+//
+//            return View(seatModel);
+            return null;
 
-            var seatModel = await _context.Sjedista
-                .Include(s => s.SectionModel)
-                .FirstOrDefaultAsync(m => m.SeatModelId == id);
-            if (seatModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(seatModel);
         }
 
         // GET: Seat/Create
         public IActionResult Create()
         {
-            ViewData["SectionModelId"] = new SelectList(_context.Sektori, "SectionModelId", "SectionModelId");
-            return View();
+//            ViewData["SectionModelId"] = new SelectList(_context.Sektori, "SectionModelId", "SectionModelId");
+//            return View();
+            return null;
+
         }
 
         // POST: Seat/Create
@@ -58,31 +63,35 @@ namespace SjediBa.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("SectionModelId,SeatModelId,RowSeat")] SeatModel seatModel)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(seatModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["SectionModelId"] = new SelectList(_context.Sektori, "SectionModelId", "SectionModelId", seatModel.SectionModelId);
-            return View(seatModel);
+//            if (ModelState.IsValid)
+//            {
+//                _context.Add(seatModel);
+//                await _context.SaveChangesAsync();
+//                return RedirectToAction(nameof(Index));
+//            }
+//            ViewData["SectionModelId"] = new SelectList(_context.Sektori, "SectionModelId", "SectionModelId", seatModel.SectionModelId);
+//            return View(seatModel);
+            return null;
+
         }
 
         // GET: Seat/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+//            if (id == null)
+//            {
+//                return NotFound();
+//            }
+//
+//            var seatModel = await _context.Sjedista.FindAsync(id);
+//            if (seatModel == null)
+//            {
+//                return NotFound();
+//            }
+//            ViewData["SectionModelId"] = new SelectList(_context.Sektori, "SectionModelId", "SectionModelId", seatModel.SectionModelId);
+//            return View(seatModel);
+            return null;
 
-            var seatModel = await _context.Sjedista.FindAsync(id);
-            if (seatModel == null)
-            {
-                return NotFound();
-            }
-            ViewData["SectionModelId"] = new SelectList(_context.Sektori, "SectionModelId", "SectionModelId", seatModel.SectionModelId);
-            return View(seatModel);
         }
 
         // POST: Seat/Edit/5
@@ -92,52 +101,56 @@ namespace SjediBa.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("SectionModelId,SeatModelId,RowSeat")] SeatModel seatModel)
         {
-            if (id != seatModel.SeatModelId)
-            {
-                return NotFound();
-            }
+//            if (id != seatModel.SeatModelId)
+//            {
+//                return NotFound();
+//            }
+//
+//            if (ModelState.IsValid)
+//            {
+//                try
+//                {
+//                    _context.Update(seatModel);
+//                    await _context.SaveChangesAsync();
+//                }
+//                catch (DbUpdateConcurrencyException)
+//                {
+//                    if (!SeatModelExists(seatModel.SeatModelId))
+//                    {
+//                        return NotFound();
+//                    }
+//                    else
+//                    {
+//                        throw;
+//                    }
+//                }
+//                return RedirectToAction(nameof(Index));
+//            }
+//            ViewData["SectionModelId"] = new SelectList(_context.Sektori, "SectionModelId", "SectionModelId", seatModel.SectionModelId);
+//            return View(seatModel);
+            return null;
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(seatModel);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!SeatModelExists(seatModel.SeatModelId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["SectionModelId"] = new SelectList(_context.Sektori, "SectionModelId", "SectionModelId", seatModel.SectionModelId);
-            return View(seatModel);
         }
 
         // GET: Seat/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+//            if (id == null)
+//            {
+//                return NotFound();
+//            }
+//
+//            var seatModel = await _context.Sjedista
+//                .Include(s => s.SectionModel)
+//                .FirstOrDefaultAsync(m => m.SeatModelId == id);
+//            if (seatModel == null)
+//            {
+//                return NotFound();
+//            }
+//
+//            return View(seatModel);
+            return null;
 
-            var seatModel = await _context.Sjedista
-                .Include(s => s.SectionModel)
-                .FirstOrDefaultAsync(m => m.SeatModelId == id);
-            if (seatModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(seatModel);
         }
 
         // POST: Seat/Delete/5
@@ -145,10 +158,12 @@ namespace SjediBa.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var seatModel = await _context.Sjedista.FindAsync(id);
-            _context.Sjedista.Remove(seatModel);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+//            var seatModel = await _context.Sjedista.FindAsync(id);
+//            _context.Sjedista.Remove(seatModel);
+//            await _context.SaveChangesAsync();
+//            return RedirectToAction(nameof(Index));
+            return null;
+
         }
 
         private bool SeatModelExists(int id)
