@@ -1,28 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/SjediBa.csproj": {}
+    "C:\\Users\\bakir\\source\\repos\\Grupa1-Sjedi.ba\\Implementacija\\SjediBa\\SjediBa\\SjediBa.csproj": {}
   },
   "projects": {
-    "/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/SjediBa.csproj": {
+    "C:\\Users\\bakir\\source\\repos\\Grupa1-Sjedi.ba\\Implementacija\\SjediBa\\SjediBa\\SjediBa.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/SjediBa.csproj",
+        "projectUniqueName": "C:\\Users\\bakir\\source\\repos\\Grupa1-Sjedi.ba\\Implementacija\\SjediBa\\SjediBa\\SjediBa.csproj",
         "projectName": "SjediBa",
-        "projectPath": "/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/SjediBa.csproj",
-        "packagesPath": "/home/dzan/.nuget/packages/",
-        "outputPath": "/home/dzan/Desktop/MyStuff/Fakultet/OOAD/Grupa1-Sjedi.ba/Implementacija/SjediBa/SjediBa/obj/",
+        "projectPath": "C:\\Users\\bakir\\source\\repos\\Grupa1-Sjedi.ba\\Implementacija\\SjediBa\\SjediBa\\SjediBa.csproj",
+        "packagesPath": "C:\\Users\\bakir\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bakir\\source\\repos\\Grupa1-Sjedi.ba\\Implementacija\\SjediBa\\SjediBa\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/home/dzan/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\bakir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -41,7 +43,7 @@
           "dependencies": {
             "EntityFramework": {
               "target": "Package",
-              "version": "[6.3.0-preview6-19304-03, )"
+              "version": "[6.2.0, )"
             },
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",
